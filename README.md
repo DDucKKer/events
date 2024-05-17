@@ -5,3 +5,5 @@ After downloading the repository, type in the terminal to launch the application
 2. **npm run dev**
 
 Open  **localhost:5000** and try the app!
+
+Link: **https://events-five-pied.vercel.app**
