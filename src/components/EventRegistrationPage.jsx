@@ -18,7 +18,7 @@ function EventRegistrationPage({event_id}) {
             const body = { users_name, email, birth_date, where_hear, event_id };
         alert("You have successfully registered for the event!")
         navigate(-1)    
-            const response = await fetch("http://localhost:5000/registrations", {
+            const response = await fetch("https://test-events-iota.vercel.app/api/registrations", {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json'},
                 body: JSON.stringify(body)

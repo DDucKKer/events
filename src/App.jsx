@@ -10,7 +10,7 @@ import {
 function App() {
   const [events, setEvents] = useState([]);
   const getEvents = async() =>{
-    await fetch('http://localhost:5000/events')
+    await fetch('https://test-events-iota.vercel.app/api/events')
       .then(response => response.json())
       .then(jsonData => setEvents(jsonData))
       .catch(err => console.log(err));  
@@ -18,7 +18,7 @@ function App() {
   useEffect(() => {
       getEvents()
   },[]);
-
+  
   return (
     <>
       <Router>

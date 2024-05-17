@@ -10,7 +10,7 @@ app.use(express.json()); //=> allows us to access the req.body
 
 
 //GET event
-app.get("/events", async (req, res) => { 
+app.get("/api/events", async (req, res) => { 
     try {
         const allEvents = await pool.query("SELECT * FROM events")
         res.json(allEvents.rows);
@@ -20,7 +20,7 @@ app.get("/events", async (req, res) => {
 })
 
 //CREATE event
-app.post('/events', async (req, res) => {
+app.post('/api/events', async (req, res) => {
     try {
         const { section_name, cuisine_id } = req.body;
         const newSection = await pool.query(
@@ -36,7 +36,7 @@ app.post('/events', async (req, res) => {
 })
 
 //Get registered users for the event
-app.get("/registered_users_for_event/:event_id", async (req, res) => {
+app.get("/api/registered_users_for_event/:event_id", async (req, res) => {
     try {
         const { event_id } = req.params;
         const allEvents = await pool.query("SELECT * FROM users WHERE event_id = $1", [event_id])
@@ -47,24 +47,18 @@ app.get("/registered_users_for_event/:event_id", async (req, res) => {
 })
 
 //Registration on the event
-app.post('/registrations', async (req, res) => {
+app.post('/api/registrations', async (req, res) => {
     try {
         const { users_name, email, birth_date, where_hear, event_id } = req.body;
         const newRegistration = await pool.query(
             "INSERT INTO users (users_name, email, birth_date, where_hear, event_id) VALUES ($1, $2, $3, $4, $5) RETURNING *",
             [users_name, email, birth_date, where_hear, event_id]
         );
-        
-        console.log(newRegistration)
-        // res.json(newRegistration);
+        res.json(newRegistration);
     } catch (err) {
         console.log(err)
     }
 })
-
-
-// SELECT * FROM public.users 
-// INSERT INTO users (users_name, email, birth_date, where_hear, event_id) VALUES ('Timothee Chalamet', 'chala@gmail.com', '27/12/1995', 'dou.ua', 1 )
 
 app.listen(PORT, () => {
     console.log(`Life is Good : ${PORT}`); 

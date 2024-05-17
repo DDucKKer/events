@@ -7,8 +7,7 @@
     "dev:frontend": "vite",
     "dev:backend": "nodemon server/index.js",
     "dev": "concurrently 'npm:dev:frontend' 'npm:dev:backend'",
-    "build": "vite build",
-    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "build": "vite build", 
     "preview": "vite preview"
   },
   "dependencies": {

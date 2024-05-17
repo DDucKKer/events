@@ -9,7 +9,7 @@ function EventParticipantsPage({event}) {
     const [findBy, setFindBy] = useState('');
 
     const getRegistrations = async() =>{
-      await fetch(`http://localhost:5000/registered_users_for_event/${event.event_id}`)
+      await fetch(`https://test-events-iota.vercel.app/api/registered_users_for_event/${event.event_id}`)
         .then(response => response.json())
         .then(jsonData => setRegistrations(jsonData))
         .catch(err => console.log(err));
